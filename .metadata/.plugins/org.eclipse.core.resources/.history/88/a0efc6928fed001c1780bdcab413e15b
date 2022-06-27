@@ -1,0 +1,44 @@
+package com.example.controlador;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.example.modelo.User;
+import com.example.repositorio.IUsuario;
+import com.example.servicio.UsuarioServicio;
+
+@Controller
+public class Controlador {
+	
+	@Autowired
+	private IUsuario repo;
+	
+	@Autowired
+	private UsuarioServicio servicio;
+	
+	@GetMapping("")
+	public String viewHomePage(Model model) {
+		model.addAttribute("usuarios",servicio.listarUsuarios());
+		return "index";
+	}
+	
+	@GetMapping("/login")
+	public String Form(Model model) {
+		return "login";
+	}
+	
+	@GetMapping("/register")
+	public String showSignUpForm(Model model) {
+		model.addAttribute("user", new User());
+		return "register";
+	}
+	
+	@PostMapping("/process_register")
+	public String processRegistration(User user) {
+		repo.save(user);
+		return "register_success";
+	}
+}

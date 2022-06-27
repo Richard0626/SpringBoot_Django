@@ -1,0 +1,9 @@
+package com.example.servicio;
+
+import java.util.List;
+import com.example.modelo.User;
+
+public interface UsuarioServicio {
+	public List<User> listarUsuarios();
+	
+}

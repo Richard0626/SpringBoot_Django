@@ -1,0 +1,36 @@
+package com.example.servicio;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.example.dto.UsuarioRegistroDTO;
+import com.example.modelo.User;
+import com.example.repositorio.UsuarioRepositorio;
+
+@Service
+public class UsuarioServicioImpl implements UsuarioServicio{
+
+	@Autowired
+	private UsuarioRepositorio iUsuario;
+	
+	@Override
+	public List<User> listarUsuarios() {
+		return iUsuario.findAll();
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User guardar(UsuarioRegistroDTO registroDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

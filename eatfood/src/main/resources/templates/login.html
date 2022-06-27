@@ -1,0 +1,80 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+	<link rel="stylesheet" th:href="@{/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/adminlte.min.css}">
+	<link rel="stylesheet" th:href="@{Recursos/mycss.css}">
+	<title>Iniciar Sesion</title>
+</head>
+
+<body class="hold-transition login-page fondo">
+	<div class="login-box">
+		<!-- /.login-logo -->
+		<div class="card card-outline card-primary">
+			<div class="card-header text-center">
+				<a href="#" class="h1"><b>Eat</b>FOOD</a>
+			</div>
+			<div class="card-body">
+				<p class="login-box-msg">Inicia sesion con tu cuenta</p>
+
+				<form th:action="@{/login}" method="post">
+					<div th:if=${param.error}>
+						<div class="alert alert-danger">Usuario o contraseña
+							inválidos</div>
+					</div>
+					<div th:if=${param.logout}>
+						<div class="alert alert-info">Ha cerrado sesión exitosamente
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<input id="username" name="username" type="text" class="form-control" placeholder="Usuario" required autofocus="autofocus">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-envelope"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<input id="password" name="password" type="password" class="form-control" placeholder="Contraseña">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-lock"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-8">
+							<div class="icheck-primary">
+								<input type="checkbox" id="remember">
+								<label for="remember">
+									Recordarme
+								</label>
+							</div>
+						</div>
+						<!-- /.col -->
+						<input type="submit" class="form-control btn btn-primary" name="login-submit" id="login-submit"
+									value="Iniciar sesión" />
+						<!-- /.col -->
+					</div>
+				</form>
+
+				<div class="social-auth-links text-center mt-2 mb-3">
+					<p>- O -</p>
+					<a th:href="@{/register}" class="btn btn-block btn-danger">Registrarse</a>
+				</div>
+			</div>
+			<!-- /.card-body -->
+		</div>
+		<!-- /.card -->
+	</div>
+	<!-- /.login-box -->
+
+
+</body>
+
+</html>

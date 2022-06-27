@@ -1,0 +1,43 @@
+package com.example;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.annotation.Rollback;
+
+import com.example.modelo.Usuario;
+import com.example.repositorio.UsuarioRepositorio;
+
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+@Rollback(false)
+public class UsuarioTest {
+	
+	@Autowired
+	private UsuarioRepositorio repo;
+	
+	@Autowired
+	private TestEntityManager entitymanager;
+	
+	@Test
+	public void testCrearUsuario() {
+		Usuario user = new Usuario();
+		user.setUsername("Diego");
+		user.setFirst_name("Diego");
+		user.setLast_name("Narro");
+		user.setPassword("123");
+		user.setEmail("Diego@gmail.com");
+		
+		Usuario guardaruser = repo.save(user);
+		
+		Usuario existeUser = entitymanager.find(Usuario.class, guardaruser);
+		
+		assertThat(existeUser.getEmail()).isEqualTo(user.getEmail());
+	}
+	
+}

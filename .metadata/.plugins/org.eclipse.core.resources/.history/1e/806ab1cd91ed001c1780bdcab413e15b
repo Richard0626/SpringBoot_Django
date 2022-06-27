@@ -1,0 +1,20 @@
+package com.example.servicio;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.example.modelo.User;
+import com.example.repositorio.IUsuario;
+
+@Service
+public class UsuarioServicioImpl implements UsuarioServicio{
+
+	@Autowired
+	private IUsuario iUsuario;
+	
+	@Override
+	public List<User> listarUsuarios() {
+		return iUsuario.findAll();
+	}
+}

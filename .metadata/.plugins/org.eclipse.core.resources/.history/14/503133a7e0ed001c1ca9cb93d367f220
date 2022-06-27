@@ -1,0 +1,57 @@
+package com.example.modelo;
+
+import java.sql.Timestamp;
+import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity(name = "auth_user")
+public class Usuario {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	private String username;
+	private String first_name;
+	private String last_name;
+	private String is_superuser;
+	private String is_staff;
+	private String is_active;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date_joined;
+	private String password;
+	private String email;
+	public Usuario(long id, String username, String first_name, String last_name, String is_superuser, String is_staff,
+			String is_active, Date date_joined, String password, String email) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.is_superuser = is_superuser;
+		this.is_staff = is_staff;
+		this.is_active = is_active;
+		this.date_joined = date_joined;
+		this.password = password;
+		this.email = email;
+	}
+	public Usuario(String username, String first_name, String last_name, String is_superuser, String is_staff,
+			String is_active, String email, String password, Date date_joined) {
+		super();
+		this.username = username;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.is_superuser = is_superuser;
+		this.is_staff = is_staff;
+		this.is_active = is_active;
+		this.date_joined = date_joined;
+		this.password = password;
+		this.email = email;
+	}
+	public Usuario() {
+		super();
+	}	
+}
